@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>Note todos</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/css/xeditable.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body ng-app="appTodo">
+    <div ng-controller="todoController">
+        <div class="jumbotron text-center">
+            <h1>{{ title }}</h1>
+            <h3>{{ todos.length }}</h3>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <div id="list-todo">
+                        <p ng-class="{strike: todo.isDone}" ng-repeat="todo in todos" editable-text="todo.text" e-form="textBtnForm" onaftersave="updateTodo(todo)">
+                            <input ng-model="todo.isDone" type="checkbox" ng-change="updateTodo(todo)"> {{ todo.text }}
+                            <a href ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">[Edit]</a>
+                            <a href ng-click="deleteTodo(todo)">[Delete]</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4" style="margin-top: 20px;">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="text" ng-model="formData.text" class="form-control" id="text" placeholder="Thêm mới công việc">
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-disabled="!formData.text" ng-click="createTodo()">Thêm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/js/xeditable.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/services/svTodo.js"></script>
+</body>
+
+</html>

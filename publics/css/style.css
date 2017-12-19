@@ -1,0 +1,9 @@
+
+#list-todo {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.strike {
+    text-decoration-line: line-through;
+}
